@@ -1,0 +1,98 @@
+<!--
+  homepage-mockup-template.html · 课程自有轻量主页模拟图模板
+  《AI 创作者商业化训练营》social-account-doctor-course 专用，自包含单文件，无外部依赖。
+
+  用法（由 AI 按用户拍板的方案替换后另存为新文件交付）：
+  1. 选主题：<body class="douyin">（抖音版·深色）或 <body class="xhs">（小红书版·浅色）
+  2. 替换占位符：
+     {{AVATAR_TEXT}}   头像位文字（1-2 字，如昵称首字）
+     {{NICKNAME}}      昵称（用户拍板的那一版）
+     {{BIO_LINE_1}} {{BIO_LINE_2}} {{BIO_LINE_3}}  三行简介（我是谁/帮谁解决什么/什么方式什么结果）
+     {{CARD_1}} ~ {{CARD_9}}  九宫格卡片标题：前 3 格填三条置顶内容标题（自动带"置顶"角标），
+                              第 4-9 格填前 10 条内容栏目的示例选题（格内可写「栏目名｜选题」）
+  3. 仅版式预览：不模仿平台真实 UI 与品牌标识，不使用平台 logo/图标素材。
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>主页示意图 · {{NICKNAME}}</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { min-height: 100vh; display: flex; align-items: center; justify-content: center;
+         font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; padding: 24px; }
+  body.douyin { background: #2b2b33; }
+  body.xhs    { background: #efe9e3; }
+  .phone { width: 375px; border-radius: 40px; padding: 14px; box-shadow: 0 18px 50px rgba(0,0,0,.35); }
+  .douyin .phone { background: #000; }
+  .xhs    .phone { background: #3a3a3a; }
+  .screen { border-radius: 28px; overflow: hidden; }
+  .douyin .screen { background: #161823; color: #fff; }
+  .xhs    .screen { background: #fff; color: #333; }
+  .notch { height: 28px; display: flex; align-items: center; justify-content: center; }
+  .notch span { width: 120px; height: 20px; border-radius: 12px; background: rgba(128,128,128,.35); }
+  .profile { padding: 20px 18px 14px; }
+  .head { display: flex; align-items: center; gap: 14px; }
+  .avatar { width: 72px; height: 72px; border-radius: 50%; flex: none;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 26px; font-weight: 700; }
+  .douyin .avatar { background: linear-gradient(135deg,#4a4e69,#22223b); color: #fff; border: 2px solid #2f3345; }
+  .xhs    .avatar { background: linear-gradient(135deg,#f2b5a0,#e07a5f); color: #fff; }
+  .nickname { font-size: 19px; font-weight: 700; line-height: 1.3; }
+  .stats { display: flex; gap: 18px; margin-top: 6px; font-size: 12px; opacity: .65; }
+  .bio { margin-top: 14px; font-size: 13px; line-height: 1.9; }
+  .bio p::before { content: ""; display: inline-block; width: 4px; height: 4px; border-radius: 50%;
+                   vertical-align: middle; margin-right: 7px; }
+  .douyin .bio p::before { background: #7c8296; }
+  .xhs    .bio p::before { background: #d38b7d; }
+  .tabbar { display: flex; border-bottom: 1px solid rgba(128,128,128,.25);
+            font-size: 13px; margin-top: 4px; }
+  .tabbar span { flex: 1; text-align: center; padding: 9px 0; opacity: .5; }
+  .tabbar span.on { opacity: 1; font-weight: 700; border-bottom: 2px solid currentColor; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; padding: 2px; }
+  .cell { position: relative; aspect-ratio: 3 / 4; padding: 8px 7px; font-size: 11px;
+          line-height: 1.5; display: flex; align-items: flex-end; overflow: hidden; }
+  .douyin .cell { background: #23263a; color: #dfe2ee; }
+  .xhs    .cell { background: #f6f2ee; color: #4a4a4a; border-radius: 6px; }
+  .cell .pin { position: absolute; top: 6px; left: 6px; font-size: 10px; padding: 1px 6px;
+               border-radius: 4px; font-weight: 600; }
+  .douyin .cell .pin { background: #facc15; color: #161823; }
+  .xhs    .cell .pin { background: #e07a5f; color: #fff; }
+  .foot { text-align: center; font-size: 10px; opacity: .45; padding: 10px 0 14px; }
+</style>
+</head>
+<!-- 二选一：class="douyin"（抖音版·深色） / class="xhs"（小红书版·浅色） -->
+<body class="douyin">
+  <div class="phone"><div class="screen">
+    <div class="notch"><span></span></div>
+    <div class="profile">
+      <div class="head">
+        <div class="avatar">{{AVATAR_TEXT}}</div>
+        <div>
+          <div class="nickname">{{NICKNAME}}</div>
+          <div class="stats"><span>关注 —</span><span>粉丝 —</span><span>获赞 —</span></div>
+        </div>
+      </div>
+      <div class="bio">
+        <p>{{BIO_LINE_1}}</p>
+        <p>{{BIO_LINE_2}}</p>
+        <p>{{BIO_LINE_3}}</p>
+      </div>
+    </div>
+    <div class="tabbar"><span class="on">作品</span><span>喜欢</span><span>收藏</span></div>
+    <div class="grid">
+      <div class="cell"><span class="pin">置顶</span>{{CARD_1}}</div>
+      <div class="cell"><span class="pin">置顶</span>{{CARD_2}}</div>
+      <div class="cell"><span class="pin">置顶</span>{{CARD_3}}</div>
+      <div class="cell">{{CARD_4}}</div>
+      <div class="cell">{{CARD_5}}</div>
+      <div class="cell">{{CARD_6}}</div>
+      <div class="cell">{{CARD_7}}</div>
+      <div class="cell">{{CARD_8}}</div>
+      <div class="cell">{{CARD_9}}</div>
+    </div>
+    <div class="foot">主页版式示意图 · 仅供预览，非平台真实界面</div>
+  </div></div>
+</body>
+</html>
